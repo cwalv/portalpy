@@ -167,7 +167,7 @@ class Portal(object):
 
     def add_item(self, item_properties, data=None, thumbnail=None, metadata=None, owner=None, folder=None):
         """ Adds content to a Portal.  
-	
+    
         
         .. note:: 
             That content can be a file (such as a layer package, geoprocessing package,
@@ -234,7 +234,7 @@ class Portal(object):
         ================  ============================================================================
 
             
-	URL 1: http://resources.arcgis.com/en/help/arcgis-rest-api/index.html#//02r3000000ms000000
+        URL 1: http://resources.arcgis.com/en/help/arcgis-rest-api/index.html#//02r3000000ms000000
 
         :return:
              The item id of the uploaded item if successful, None if unsuccessful.
@@ -422,14 +422,14 @@ class Portal(object):
             a boolean indicating whether it was successful.
         
        """
-	if owner is None:
-		owner = self.con._username
-	
-	if folder is None :
-		path = 'content/users/' + owner + '/items/' + item_id + '/delete'
-	else :
-		path = 'content/users/' + owner + '/' + folder + '/items/' + item_id + '/delete'
-	
+        if owner is None:
+            owner = self.con._username
+        
+        if folder is None :
+            path = 'content/users/' + owner + '/items/' + item_id + '/delete'
+        else :
+            path = 'content/users/' + owner + '/' + folder + '/items/' + item_id + '/delete'
+        
         resp = self.con.post(path, self._postdata())
         if resp:
             return resp.get('success')
@@ -474,7 +474,7 @@ class Portal(object):
         postdata = self._postdata()
         postdata['items'] = ','.join(item_ids)
         resp = self.con.post('content/users/' + self.con._username + '/deleteItems', postdata)
-	return resp['results']
+        return resp['results']
 
 
 
@@ -925,7 +925,7 @@ class Portal(object):
         
         """        
 
-	self.con.logout()
+        self.con.logout()
 
 
     def logged_in_user(self):
@@ -1022,8 +1022,8 @@ class Portal(object):
     def reassign_item(self, item_id, current_owner, target_owner, current_folder=None, target_folder=None):
         """ Allows the administrator to reassign a single item from one user to another.  
 
-	    .. note:: 
-             	If you wish to move all of a user's items (and groups) to another user then use the
+        .. note:: 
+                If you wish to move all of a user's items (and groups) to another user then use the
                 reassign_user method.  This method only moves one item at a time.
         
         ================  ========================================================
@@ -1045,10 +1045,10 @@ class Portal(object):
         
         """
 
-	path = '/content/users/' + current_owner
-	if current_folder :
-		path += '/folder'
-	path += 'items/' + item_id + '/reassign'
+        path = '/content/users/' + current_owner
+        if current_folder :
+            path += '/folder'
+        path += 'items/' + item_id + '/reassign'
 
         postdata = self._postdata()
         postdata['targetUsername'] = target_owner
